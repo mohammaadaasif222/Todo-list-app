@@ -58,7 +58,7 @@ const Main = () => {
               onChange={handleChange}
             ></input>
             <Button variant="outline-success" className="add-btn" onClick={handleCard}>
-              {/* <GrAdd /> */}Add +
+              {/* <GrAdd /> */} +
             </Button>
           </div>
         </div>
