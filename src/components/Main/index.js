@@ -56,6 +56,7 @@ const Main = () => {
               placeholder="Add a Item "
               value={todo}
               onChange={handleChange}
+              maxlength="300"
             ></input>
             <Button variant="outline-success" className="add-btn" onClick={handleCard}>
               {/* <GrAdd /> */} +
