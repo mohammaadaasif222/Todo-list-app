@@ -47,7 +47,7 @@ const Main = () => {
               <option value="fantasy">fantasy</option>
               <option value="monospace">monospace</option>
             </select>
-            <input type="color" id="colorbox" value={color}  onChange={colorHandler} />
+            <input type="color" id="colorbox" value={color} onChange={colorHandler}  />
           </div>
           <div className="col-md-6">
             <input
@@ -56,7 +56,7 @@ const Main = () => {
               placeholder="Add a Item "
               value={todo}
               onChange={handleChange}
-              maxlength="300"
+              maxLength="300"
             ></input>
             <Button variant="outline-success" className="add-btn" onClick={handleCard}>
               {/* <GrAdd /> */} +
@@ -65,10 +65,14 @@ const Main = () => {
         </div>
       </div>
       <hr />
-      <div className="row reverse-row justify-content-center"  style={{color:color,fontFamily:font}}>
+      <div className="row reverse-row justify-content-center" style={{color:color, fontFamily:font}} >
         {todos.map((item, index) => {
           return (
-            <Todo text={item} id={index} key={index} onSelect={deleteItem}  />
+            <Todo text={item}
+             id={index} 
+             key={index} 
+             onSelect={deleteItem} 
+             />
           );
         })}
       </div>
