@@ -14,7 +14,7 @@ const Todo = (props) => {
           props.onChange(props.id)
         }}/>     
         <div className="content" >{props.text}</div>
-        <span className="date-style text-muted">{new Date().toLocaleString()}</span>
+        <span className="date-style text-muted">{props.date}</span>
       </div>
     </>
   );

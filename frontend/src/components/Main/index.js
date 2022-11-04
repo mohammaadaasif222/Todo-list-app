@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import Todo from "../Todo.js";
-// import { GrAdd} from "react-icons/gr";
 import "./main.css";
 
 const Main = () => {
@@ -9,9 +8,7 @@ const Main = () => {
   const [color, setColor] = useState("");
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
-  const [item, setItem] = useState([]);
-  var count = 0;
-
+ 
   useEffect(() => {
     const getData = async () => {
       try {
@@ -23,30 +20,31 @@ const Main = () => {
       }
     };
     getData();
-  }, []);
 
+  }, []);
   const handleCard = () => {
-      fetch(" http://localhost:3000/todos", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: count + 7, todo: todo }),
-    })
-      .then((response) => response.json())
-      .then((response) => console.log(JSON.stringify(response)));
-  };
+    fetch(" http://localhost:3000/todos", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id: Date.now(), todo: todo, date:new Date().toLocaleString() }),
+  })
+    .then((response) => response.json())
+    .then((response) => console.log(JSON.stringify(response)));
+    setTodo('')
+};
+
+
   const handleChange = (event) => {
     setTodo(event.target.value);
   };
 
   const deleteItem = (id) => {
-    setTodos((oldItem) => {
-      return oldItem.filter((item, index) => {
-        return index !== id;
-      });
-    });
+    fetch(`http://localhost:3000/todos/${id}`, {
+      method: "DELETE", 
+    })
   };
 
   const colorHandler = (e) => {
@@ -103,7 +101,8 @@ const Main = () => {
           return (
             <Todo
               text={item.todo}
-              id={index}
+              date={item.date}
+              id={item.id}
               key={index}
               onSelect={deleteItem}
             />

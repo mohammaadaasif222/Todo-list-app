@@ -1,28 +1,9 @@
 {
   "todos": [
     {
-      "id": 1,
-      "todo": "some comment"
-    },
-    {
-      "id": 78912,
-      "todo": "my First todo"
-    },
-    {
-      "id": 3,
-      "todo": "my First todo"
-    },
-    {
-      "id": 5,
-      "todo": "hello"
-    },
-    {
-      "id": 6,
-      "todo": "hiii i am fisrt todo"
-    },
-    {
-      "id": 7,
-      "todo": "hey my last"
+      "id": 1667575466236,
+      "todo": "new",
+      "date": "11/4/2022, 8:54:26 PM"
     }
   ],
   "profile": {
