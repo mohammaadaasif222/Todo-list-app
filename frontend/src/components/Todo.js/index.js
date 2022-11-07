@@ -8,7 +8,7 @@ const Todo = (props) => {
     <>
   
       <div className="col-md-3 m-2 border todo-card">
-      <ImCross className="icon-style" onClick={()=>{
+      <ImCross title="Delete" className="icon-style" onClick={()=>{
             props.onSelect(props.id)
         }} onChange={()=>{
           props.onChange(props.id)

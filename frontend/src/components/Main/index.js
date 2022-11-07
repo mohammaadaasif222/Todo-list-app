@@ -29,7 +29,7 @@ const Main = () => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ id: Date.now(), todo: todo, date:new Date().toLocaleString() }),
+    body: JSON.stringify({ id: Date.now(), todo: todo, date:new Date().toDateString() }),
   })
     .then((response) => response.json())
     .then((response) => console.log(JSON.stringify(response)));
