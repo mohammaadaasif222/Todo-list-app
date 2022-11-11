@@ -5,53 +5,53 @@ import "./main.css";
 
 const Main = () => {
   const [font, setFont] = useState("");
-  const [color, setColor] = useState("");
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
- 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/todos");
-        const data = await response.json();
-        setTodos(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
 
+  const loadTodos = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/todos");
+      const data = await response.json();
+      setTodos(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    setTimeout(() => loadTodos(), 500);
   }, []);
+
   const handleCard = () => {
     fetch(" http://localhost:3000/todos", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ id: Date.now(), todo: todo, date:new Date().toDateString() }),
-  })
-    .then((response) => response.json())
-    .then((response) => console.log(JSON.stringify(response)));
-    setTodo('')
-};
-
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: Date.now(),
+        todo: todo,
+        date: new Date().toDateString(),
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => console.log(JSON.stringify(response)));
+    setTodo("");
+  };
 
   const handleChange = (event) => {
     setTodo(event.target.value);
-    setTimeout(()=>getData(),500)
+    setTimeout(() => loadTodos(), 500);
   };
 
   const deleteItem = (id) => {
     fetch(`http://localhost:3000/todos/${id}`, {
-      method: "DELETE", 
-    })
-    setTimeout(()=>getData(),500)
+      method: "DELETE",
+    });
+    setTimeout(() => loadTodos(), 300);
   };
 
-  const colorHandler = (e) => {
-    setColor(e.target.value);
-  };
+
   const fontHandler = (e) => {
     setFont(e.target.value);
   };
@@ -68,12 +68,6 @@ const Main = () => {
               <option value="fantasy">fantasy</option>
               <option value="monospace">monospace</option>
             </select>
-            <input
-              type="color"
-              id="colorbox"
-              value={color}
-              onChange={colorHandler}
-            />
           </div>
           <div className="col-md-6">
             <input
@@ -97,7 +91,7 @@ const Main = () => {
       <hr />
       <div
         className="row reverse-row justify-content-center"
-        style={{ color: color, fontFamily: font }}
+        style={{ fontFamily: font }}
       >
         {todos.map((item, index) => {
           return (
