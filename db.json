@@ -1,0 +1,17 @@
+{
+  "todos": [
+    {
+      "id": 1667836537419,
+      "todo": "hello ",
+      "date": "Mon Nov 07 2022"
+    },
+    {
+      "id": 1667837924281,
+      "todo": "heii",
+      "date": "Mon Nov 07 2022"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
