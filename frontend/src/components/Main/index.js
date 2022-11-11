@@ -39,14 +39,14 @@ const Main = () => {
 
   const handleChange = (event) => {
     setTodo(event.target.value);
-    setTimeout(()=>getData())
+    setTimeout(()=>getData(),500)
   };
 
   const deleteItem = (id) => {
     fetch(`http://localhost:3000/todos/${id}`, {
       method: "DELETE", 
     })
-    setTimeout(()=>getData())
+    setTimeout(()=>getData(),500)
   };
 
   const colorHandler = (e) => {
