@@ -8,45 +8,46 @@ const Main = () => {
   const [color, setColor] = useState("");
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
- 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/todos");
-        const data = await response.json();
-        setTodos(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
 
-  }, []);
+  const getData = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/todos");
+      const data = await response.json();
+      setTodos(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  getData();
+
   const handleCard = () => {
     fetch(" http://localhost:3000/todos", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ id: Date.now(), todo: todo, date:new Date().toDateString() }),
-  })
-    .then((response) => response.json())
-    .then((response) => console.log(JSON.stringify(response)));
-    setTodo('')
-};
-
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: Date.now(),
+        todo: todo,
+        date: new Date().toDateString(),
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => console.log(JSON.stringify(response)));
+    setTodo("");
+  };
 
   const handleChange = (event) => {
     setTodo(event.target.value);
-    setTimeout(()=>getData(),500)
+    setTimeout(() => getData(), 500);
   };
 
   const deleteItem = (id) => {
     fetch(`http://localhost:3000/todos/${id}`, {
-      method: "DELETE", 
-    })
-    setTimeout(()=>getData(),500)
+      method: "DELETE",
+    });
+    setTimeout(() => getData(), 500);
   };
 
   const colorHandler = (e) => {
